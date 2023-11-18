@@ -1,0 +1,32 @@
+{
+    "name": "litecms/employee",
+    "description": "Employee package for litecms.",
+    "keywords": ["lavalite", "Employee"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lavalite",
+            "email": "info@lavalite.org"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Litecms\\Employee\\": "src",
+            "Litecms\\Employee\\Seeders\\": "database/seeders"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Litecms\\Employee\\Providers\\EmployeeServiceProvider"
+            ],
+            "aliases": {
+                "Employee" : "Litecms\\Employee\\Facades\\Employee"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
