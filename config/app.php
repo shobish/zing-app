@@ -212,6 +212,7 @@ return [
         Litecms\Block\Providers\BlockServiceProvider::class,
         Litecms\Contact\Providers\ContactServiceProvider::class,
         Litecms\Page\Providers\PageServiceProvider::class,
+        Litecms\Employee\Providers\EmployeeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -221,7 +222,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -255,7 +255,7 @@ return [
         'Contact' => Litecms\Contact\Facades\Contact::class,
         'Pages' => Litecms\Page\Facades\Pages::class,
         'LitecmsAdverts' => Litecms\Advert\Facades\Adverts::class,
-
+        'Employee'  => Litecms\Employee\Facades\Employee::class,
     ])->toArray(),
 
 ];

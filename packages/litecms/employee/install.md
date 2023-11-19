@@ -1,6 +1,6 @@
 # Installation
 
-The instructions below will help you to properly installand run the generated package to the lavalite project.
+The instructions below will help you to properly install the generated package to the lavalite project.
 
 ## Location
 
@@ -10,143 +10,123 @@ Extract the package contents to the folder
 
 ## Composer
 
-Add the below entries in the `composer.json`.
-
+Add the below entries in the `composer.json` file's autoload section and run the command `composer dump-autoload` in terminal.
 
 ```json
 
 ...
-     "repositories": {
-        ...
+     "autoload": {
 
-        {
-            "type": "path",
-            "url": "packages/litecms/employee"
+        "psr-4": {
+            ... ,
+            "Litecms\\Employee\\": "packages/litecms/employee/src",
+            "Litecms\\Employee\\Seeders\\": "packages/litecms/employee/database/seeders"
+            
+            ...
         }
-
-        ...
     },
 ...
 
 ```
-Then run `composer require litecms/employee`
 
+## Config
 
-## Migration and seeds
+Add the entries in service provider in `config/app.php`
+
+```php
+
+...
+    'providers'       => [
+        ...
+        
+        Litecms\Employee\Providers\EmployeeServiceProvider::class,
+        
+        ...
+    ],
+
+    ...
+
+    'alias'             => [
+        ...
+        
+        'Employee'  => Litecms\Employee\Facades\Employee::class,
+        
+        ...
+    ]
+...
 
 ```
+
+## Migrate
+
+After service provider is set run the commapnd to migrate and seed the database.
+
+
     php artisan migrate
     php artisan db:seed --class=Litecms\\Employee\\Seeders\\EmployeeTableSeeder
-```
 
 ## Publishing
 
-* Configuration
-```
+
+**Publishing configuration**
+
     php artisan vendor:publish --provider="Litecms\Employee\Providers\EmployeeServiceProvider" --tag="config"
-```
-* Language
-```
+
+**Publishing language**
+
     php artisan vendor:publish --provider="Litecms\Employee\Providers\EmployeeServiceProvider" --tag="lang"
-```
-* Views
-```
+
+**Publishing views**
+
     php artisan vendor:publish --provider="Litecms\Employee\Providers\EmployeeServiceProvider" --tag="view"
-```
+
 
 ## URLs and APIs
 
+
 ### Web Urls
 
-* Admin
-```
+**Admin**
+
     http://path-to-route-folder/admin/employee/{modulename}
-```
 
-* User
-```
+**User**
+
     http://path-to-route-folder/user/employee/{modulename}
-```
 
-* Public
-```
+**Public**
+
     http://path-to-route-folder/employees
-```
 
 
 ### API endpoints
 
-These endpoints can be used with or without `/api/`
-And also the user can be varied depend on the type of users, eg user, client, admin etc.
-
-#### Resource
-
-* List
-```
+**List**
+ 
     http://path-to-route-folder/api/user/employee/{modulename}
     METHOD: GET
-```
 
-* Create
-```
+**Create**
+
     http://path-to-route-folder/api/user/employee/{modulename}
     METHOD: POST
-```
 
-* Edit
-```
+**Edit**
+
     http://path-to-route-folder/api/user/employee/{modulename}/{id}
     METHOD: PUT
-```
 
-* Delete
-```
+**Delete**
+
     http://path-to-route-folder/api/user/employee/{modulename}/{id}
     METHOD: DELETE
-```
 
-#### Public
+**Public List**
 
-* List
-```
     http://path-to-route-folder/api/employee/{modulename}
     METHOD: GET
-```
 
-* Single Item
-```
+**Public Single**
+
     http://path-to-route-folder/api/employee/{modulename}/{slug}
     METHOD: GET
-```
-
-#### Others
-
-* Report
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/report/{report}
-    METHOD: GET
-```
-
-* Export/Import
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/exim/{exim}
-    METHOD: POST
-```
-
-* Action
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/action/{id}/{action}
-    METHOD: PATCH
-```
-
-* Actions
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/actions/{action}
-    METHOD: PATCH
-```
-
-* Workflow
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/workflow/{id}/{transition}
-    METHOD: PATCH
-```

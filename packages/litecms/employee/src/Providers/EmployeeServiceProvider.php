@@ -44,9 +44,12 @@ class EmployeeServiceProvider extends ServiceProvider
     {
         $this->mergeConfig();
         $this->registerFacade();
+        // $this->registerCommands();
 
         $this->app->register(\Litecms\Employee\Providers\AuthServiceProvider::class);
         $this->app->register(\Litecms\Employee\Providers\RouteServiceProvider::class);
+        // $this->app->register(\Litecms\Employee\Providers\EventServiceProvider::class);
+        // $this->app->register(\Litecms\Employee\Providers\WorkflowServiceProvider::class);
     }
 
     /**
@@ -57,9 +60,11 @@ class EmployeeServiceProvider extends ServiceProvider
     public function registerFacade() {
         $this->app->bind('litecms.employee', function($app)
         {
-            return $this->app->make(Employee::class);
+            return $this->app->make(Employees::class);
         });
     }
+
+
 
     /**
      * Merges user's and employee's configs.
@@ -74,11 +79,21 @@ class EmployeeServiceProvider extends ServiceProvider
         
         
         $this->mergeConfigFrom(
-            __DIR__ . '/../../config/employe.php', 'litecms.employee.employe'
+            __DIR__ . '/../../config/employee.php', 'litecms.employee.employee'
         );
     }
 
-
+    /**
+     * Register scaffolding command
+     */
+    protected function registerCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Litecms\Employee\Commands\Employee::class,
+            ]);
+        }
+    }
     /**
      * Get the services provided by the provider.
      *

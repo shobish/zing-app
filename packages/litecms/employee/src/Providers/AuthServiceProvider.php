@@ -13,9 +13,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // Bind Employe policy
-        \Litecms\Employee\Models\Employe::class 
-        => \Litecms\Employee\Policies\EmployePolicy::class,
+        // Bind Employee policy
+        \Litecms\Employee\Repositories\Eloquent\EmployeeRepository::class 
+        => \Litecms\Employee\Policies\EmployeePolicy::class,
     ];
 
     /**

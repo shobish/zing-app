@@ -43,7 +43,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Litecms\\employee\\": "packages/litecms/restaurantapp/src",
+            "Litecms\\Employee\\": "packages/litecms/employee/src",
+            "Litecms\\Employee\\Seeders\\": "packages/litecms/employee/database/seeders",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

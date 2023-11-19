@@ -2,130 +2,85 @@ Lavalite package that provides employee management facility for the cms.
 
 ## Installation
 
-Run the below command form the root folder of lavalite.
+Begin by installing this package through Composer. Edit your project's `composer.json` file to require `litecms/employee`.
 
-```
-    composer require "litecms/employee"
-```
+    "litecms/employee": "dev-master"
 
+Next, update Composer from the Terminal:
 
-## Migration and seeds
+    composer update
 
-```
+Once this operation completes execute below cammnds in command line to finalize installation.
+
+    Litecms\Employee\Providers\EmployeeServiceProvider::class,
+
+And also add it to alias
+
+    'Employee'  => Litecms\Employee\Facades\Employee::class,
+
+## Publishing files and migraiting database.
+
+**Migration and seeds**
+
     php artisan migrate
     php artisan db:seed --class=Litecms\\Employee\\Seeders\\EmployeeTableSeeder
-```
 
-## Publishing
+**Publishing configuration**
 
-* Configuration
-```
     php artisan vendor:publish --provider="Litecms\Employee\Providers\EmployeeServiceProvider" --tag="config"
-```
-* Language
-```
+
+**Publishing language**
+
     php artisan vendor:publish --provider="Litecms\Employee\Providers\EmployeeServiceProvider" --tag="lang"
-```
-* Views
-```
+
+**Publishing views**
+
     php artisan vendor:publish --provider="Litecms\Employee\Providers\EmployeeServiceProvider" --tag="view"
-```
-
-
-## URLs and APIs
 
 
 ### Web Urls
 
-* Admin
-```
+**Admin**
+
     http://path-to-route-folder/admin/employee/{modulename}
-```
 
-* User
-```
+**User**
+
     http://path-to-route-folder/user/employee/{modulename}
-```
 
-* Public
-```
+**Public**
+
     http://path-to-route-folder/employees
-```
 
 
 ### API endpoints
 
-These endpoints can be used with or without `/api/`
-And also the user can be varied depend on the type of users, eg user, client, admin etc.
+**List**
 
-#### Resource
-
-* List
-```
     http://path-to-route-folder/api/user/employee/{modulename}
     METHOD: GET
-```
 
-* Create
-```
+**Create**
+
     http://path-to-route-folder/api/user/employee/{modulename}
     METHOD: POST
-```
 
-* Edit
-```
+**Edit**
+
     http://path-to-route-folder/api/user/employee/{modulename}/{id}
     METHOD: PUT
-```
 
-* Delete
-```
+**Delete**
+
     http://path-to-route-folder/api/user/employee/{modulename}/{id}
     METHOD: DELETE
-```
 
-#### Public
+**Public List**
 
-* List
-```
     http://path-to-route-folder/api/employee/{modulename}
     METHOD: GET
-```
 
-* Single Item
-```
+**Public Single**
+
     http://path-to-route-folder/api/employee/{modulename}/{slug}
     METHOD: GET
-```
-
-#### Others
-
-* Report
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/report/{report}
-    METHOD: GET
-```
-
-* Export/Import
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/exim/{exim}
-    METHOD: POST
-```
-
-* Action
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/action/{id}/{action}
-    METHOD: PATCH
-```
-
-* Actions
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/actions/{action}
-    METHOD: PATCH
-```
-
-* Workflow
-```
-    http://path-to-route-folder/api/user/employee/{modulename}/workflow/{id}/{transition}
-    METHOD: PATCH
-```

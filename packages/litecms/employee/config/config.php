@@ -15,6 +15,6 @@ return [
     /*
      * Modules.
      */
-    'modules'   => ['employe'],
+    'modules'   => ['employee'],
 
 ];

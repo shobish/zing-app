@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', 'PublicController@home');
-Route::get('employee/test', 'employeeController@home');
+
 Route::group(
     [
         'middleware' => 'trans',

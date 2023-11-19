@@ -4,7 +4,7 @@ namespace Litecms\Employee\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-use Litecms\Employee\Models\Employe;
+use Litecms\Employee\Models\Employee;
 
 use Request;
 use Route;
@@ -31,9 +31,9 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         
-        if (Request::is('*/employee/employe/*')) {
-            Route::bind('employe', function ($employe) {
-                return Employe::findorNew($employe);
+        if (Request::is('*/employee/employee/*')) {
+            Route::bind('employee', function ($employee) {
+                return Employee::findorNew($employee);
             });
         }
 
